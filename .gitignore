@@ -1,0 +1,18 @@
+# Node modules
+node_modules
+
+# Logs
+logs
+*.log
+
+# Dependency directories
+vendor
+
+# dotenv environment variables file
+.env
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
