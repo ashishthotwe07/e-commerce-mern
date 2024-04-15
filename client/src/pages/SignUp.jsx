@@ -1,12 +1,30 @@
 import React, { useState } from "react";
 import OAuth from "../components/OAuth";
+import { FiPlus } from "react-icons/fi";
 
 export default function Signup() {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
+    photo: null, // Include photo in form data state
   });
+
+  const [photoPreview, setPhotoPreview] = useState(null);
+
+  const handlePhotoChange = (e) => {
+    const file = e.target.files[0];
+    setFormData((prevData) => ({
+      ...prevData,
+      photo: file, 
+    }));
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      setPhotoPreview(event.target.result);
+    };
+    reader.readAsDataURL(file);
+  };
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -18,6 +36,7 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     console.log(formData);
   };
 
@@ -41,6 +60,39 @@ export default function Signup() {
                 autoComplete="off"
                 onSubmit={handleSubmit}
               >
+                <div className="col-span-6 ml-2 sm:col-span-4 md:mr-3">
+                  <input
+                    type="file"
+                    id="photoInput"
+                    className="hidden"
+                    onChange={handlePhotoChange}
+                  />
+
+                  <label
+                    className="block text-gray-700 text-sm font-bold mb-2 text-center"
+                    htmlFor="photoInput"
+                  >
+                    Profile Photo <span className="text-red-600"> </span>
+                  </label>
+
+                  <div className="text-center">
+                    <label htmlFor="photoInput" className="cursor-pointer">
+                      <div className="relative w-20 h-20 m-auto rounded-full shadow">
+                        {photoPreview ? (
+                          <img
+                            src={photoPreview}
+                            className="w-full h-full border-2 border-gray-500 rounded-full object-cover"
+                            alt="Profile"
+                          />
+                        ) : (
+                          <div className="flex items-center justify-center w-full h-full rounded-full bg-gray-200">
+                            <FiPlus className="text-gray-600 w-10 h-10" />
+                          </div>
+                        )}
+                      </div>
+                    </label>
+                  </div>
+                </div>
                 <div>
                   <input
                     type="text"

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
-import { HiMenuAlt3 } from "react-icons/hi";
 import { FaSearch, FaUserCircle, FaShoppingCart } from "react-icons/fa";
 import { FaSun, FaMoon } from "react-icons/fa";
 import Footer from "./Footer";
@@ -9,6 +8,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -37,14 +37,12 @@ export default function Navbar() {
             href="/"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
-            <img
-              src="https://cdn-icons-png.flaticon.com/128/3176/3176363.png"
-              className="w-7"
-              alt=""
-            />
-            <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-              SwiftCart
-            </span>
+            <div class="flex items-center justify-center">
+              <div class="text-xl font-bold text-blue-700">SHOP</div>
+              <div class="text-xl font-bold flex ml-1 items-center text-green-700">
+                ONLINE
+              </div>
+            </div>
           </a>
           <div className="flex md:order-1">
             <button
